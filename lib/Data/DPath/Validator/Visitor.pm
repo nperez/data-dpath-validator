@@ -11,6 +11,12 @@ package Data::DPath::Validator::Visitor;
 
     $v->templates; # [ '/foo/*' ]
 
+=head1 DESCRIPTION
+
+Data::DPath::Validator::Visitor subclasses Data::Visitor to parse arbitrary
+Perl data structures into Data::DPath paths. It stores these paths in its
+templates attribute.
+
 =cut
 
 use Moose;
@@ -370,10 +376,4 @@ __PACKAGE__->meta->make_immutable();
 1;
 
 __END__
-
-=head1 DESCRIPTION
-
-Data::DPath::Validator::Visitor subclasses Data::Visitor to parse arbitrary
-Perl data structures into Data::DPath paths. It stores these paths in its
-templates attribute.
 

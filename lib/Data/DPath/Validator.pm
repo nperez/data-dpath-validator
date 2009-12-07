@@ -26,6 +26,26 @@ use namespace::autoclean;
         print "Hooray!\n";
     }
 
+=head1 DESCRIPTION
+
+Data::DPath::Validator is a simple data validator using normal Perl data
+structures as templates. It accomplishes this by translating your template into
+a series Data::DPath paths (one for each "branch") using Data::Visitor to
+traverse the data structure like a SAX parser. Then when calling validate(),
+each path is then attempted against the supplied data.
+
+=head1 NOTES
+
+A template is defined by using a normal Perl data structure like in the
+synopsis, with the parts where 'any' data is acceptable being replaced with an
+asterisk ('*').
+
+By default, the validator is in loose validation mode, meaning as long as one
+path matches, the data structure passes. To instead require strict validation
+do this:
+
+    my $v = Data::DPath::Validator->new(strict_mode => 1);
+
 =cut
 
 with 'MooseX::Role::BuildInstanceOf' =>
@@ -143,23 +163,3 @@ __PACKAGE__->meta->make_immutable();
 1;
 
 __END__
-
-=head1 DESCRIPTION
-
-Data::DPath::Validator is a simple data validator using normal Perl data
-structures as templates. It accomplishes this by translating your template into
-a series Data::DPath paths (one for each "branch") using Data::Visitor to
-traverse the data structure like a SAX parser. Then when calling validate(),
-each path is then attempted against the supplied data.
-
-=head1 NOTES
-
-A template is defined by using a normal Perl data structure like in the
-synopsis, with the parts where 'any' data is acceptable being replaced with an
-asterisk ('*').
-
-By default, the validator is in loose validation mode, meaning as long as one
-path matches, the data structure passes. To instead require strict validation
-do this:
-
-    my $v = Data::DPath::Validator->new(strict_mode => 1);
