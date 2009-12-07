@@ -225,6 +225,23 @@ sub visit_value
     }
     else
     {
+        if($self->structure_depth == 0)
+        {
+            $self->dive();
+            $self->append_text('.[ value ');
+            if(Scalar::Util::looks_like_number($val))
+            {
+                $self->append_text("== $val");
+            }
+            else
+            {
+                $self->append_text("eq '$val'");
+            }
+            $self->append_text(']');
+            $self->add_template($self->current_template);
+            $self->rise();
+            return;
+        }
         $self->append_text('.[ value ');
     }
 

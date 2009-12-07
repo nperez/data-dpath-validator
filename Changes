@@ -1,4 +1,7 @@
 Revision history for {{ $dist->name }}: {{ $dist->version }}
 
 {{ $NEXT }}
+        Fix bug regarding top level elements depth behavior
+
+0.093410  2009-12-07 09:36:32 America/Chicago
         Initial release

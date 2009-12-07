@@ -45,12 +45,12 @@ my $template =
     },
 };
 
-$vloose->load($template);
+$vloose->load('zarp', 'fluawe', $template);
 $vstrict->load($template);
 
 is($vloose->validate({foo => { faa => [undef, undef, undef, { random_stuff => ['floo'] }]}})->[0], 1, 'loose validation of nested asterisk 1');
 is($vloose->validate({foo => { faa => [undef, undef, undef, { random_stuff => ['floo'] }, { gar => {zar => { srga => '2' } } }]}})->[0], 1, 'loose validation of nested asterisk 2');
-is_deeply($vloose->validate({baz => { zaa => [ 1 ] } }, {baz => { zaa => [ [ 1 ], 'yarg' ]}}), [1,1], 'multiple loose validation');
+is_deeply($vloose->validate({baz => 1}, {baz => { zaa => [ 1 ] } }, {baz => { zaa => [ [ 1 ], 'yarg' ]}}, 'zarp' ), [1,1,1,1], 'multiple loose validation');
 
 my $strict_data =
 {
