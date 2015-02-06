@@ -1,6 +1,6 @@
 use warnings;
 use strict;
-use Test::More;
+use Test::More tests => 5;
 
 use Data::DPath::Validator;
 
@@ -91,5 +91,8 @@ my $strict_data =
 };
 
 is($vstrict->validate($strict_data)->[0], 1, 'strict validation');
+
+$strict_data->{'baz'} = 1;
+is($vstrict->validate($strict_data)->[0], 0, 'negative testing with strict validation');
 
 done_testing();
